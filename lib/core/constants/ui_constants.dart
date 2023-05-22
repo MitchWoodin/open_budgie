@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../features/accounts/views/account_page.dart';
+import '../../features/budget/views/budget_view.dart';
 import '../theme/core_theme.dart';
 import 'core_constants.dart';
 
@@ -9,30 +11,65 @@ class UIConstants {
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Align(
-          alignment: Alignment.centerRight,
+          alignment: Alignment.topRight,
           child: Image.asset(
-            AssetConstants.LOGO,
+            AssetConstants.MAIN_LOGO,
             fit: BoxFit.cover,
             height: 50,
           ),
         ),
       ),
       backgroundColor: Palette.primary,
+      elevation: 10,
     );
   }
 
-  static Drawer drawer() {
+  // final BuildContext context;
+  // UIConstants({required this.context});
+
+  static Drawer drawer(BuildContext context) {
     return Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: const [
-      Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text("Hello"),
-            Text("World"),
-          ],
-        ),
+      backgroundColor: Palette.primaryVariant,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+              child: Image.asset(
+            AssetConstants.SMALL_LOGO,
+            scale: 0.5,
+          )),
+          ListTile(
+            title: const Row(
+              children: [
+                Icon(Icons.monetization_on, color: Colors.grey),
+                SizedBox(width: 15),
+                Text(
+                  "Budget",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context, BudgetView.route());
+            },
+          ),
+          ListTile(
+            title: const Row(
+              children: [
+                Icon(Icons.account_balance, color: Colors.grey),
+                SizedBox(width: 15),
+                Text(
+                  "Accounts",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context, AccountView.route());
+            },
+          ),
+        ],
       ),
-    ]));
+    );
   }
 }
