@@ -16,6 +16,7 @@ dependencies:
   hidden_drawer_menu: ^3.0.1
   flutter_riverpod: ^2.3.6
   appwrite: ^9.0.0
+  fpdart: ^0.6.0
 
 dev_dependencies:
   flutter_test:
