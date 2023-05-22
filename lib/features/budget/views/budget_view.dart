@@ -1,4 +1,5 @@
 import 'package:budgie_finance/core/constants/ui_constants.dart';
+import 'package:budgie_finance/core/theme/core_theme.dart';
 import 'package:flutter/material.dart';
 
 class BudgetView extends StatefulWidget {
@@ -16,6 +17,7 @@ class _BudgetViewState extends State<BudgetView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.background,
       appBar: UIConstants.appBar(),
       drawer: UIConstants.drawer(context),
       body: const Row(

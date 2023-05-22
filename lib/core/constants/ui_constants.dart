@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../features/accounts/views/account_page.dart';
 import '../../features/budget/views/budget_view.dart';
 import '../theme/core_theme.dart';
+import '../widgets/drawer_list_tile_button.dart';
 import 'core_constants.dart';
 
 class UIConstants {
@@ -34,18 +35,19 @@ class UIConstants {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-              child: Image.asset(
-            AssetConstants.SMALL_LOGO,
-            scale: 0.5,
-          )),
+            child: Image.asset(
+              AssetConstants.SMALL_LOGO,
+              scale: 0.5,
+            ),
+          ),
           ListTile(
             title: const Row(
               children: [
-                Icon(Icons.monetization_on, color: Colors.grey),
+                Icon(Icons.monetization_on, color: Palette.background),
                 SizedBox(width: 15),
                 Text(
                   "Budget",
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Palette.background),
                 ),
               ],
             ),
@@ -53,20 +55,41 @@ class UIConstants {
               Navigator.push(context, BudgetView.route());
             },
           ),
-          ListTile(
-            title: const Row(
-              children: [
-                Icon(Icons.account_balance, color: Colors.grey),
-                SizedBox(width: 15),
-                Text(
-                  "Accounts",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
+          DrawerListTileButton(
+            title: "Accounts",
+            icon: const Icon(Icons.account_balance, color: Palette.background),
             onTap: () {
-              Navigator.push(context, AccountView.route());
+              Navigator.push(
+                context,
+                AccountView.route(),
+              );
             },
+          ),
+          ExpansionTile(
+            title: const Text(
+              "Settings",
+              style: TextStyle(color: Palette.background),
+            ),
+            leading: const Icon(Icons.settings, color: Palette.background),
+            children: [
+              DrawerListTileButton(
+                title: "Profile",
+                onTap: () {},
+                icon: const Icon(Icons.person, color: Palette.background),
+              )
+            ],
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.logout,
+                  color: Palette.unselected,
+                ),
+              ),
+            ),
           ),
         ],
       ),
