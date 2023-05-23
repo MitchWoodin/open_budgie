@@ -1,7 +1,9 @@
-import 'package:budgie_finance/features/accounts/views/account_page.dart';
-import 'package:budgie_finance/features/auth/views/register_view.dart';
+import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'core/theme/core_theme.dart';
+import 'features/auth/views/register_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -14,10 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.theme,
       home: const RegisterView(),
     );
   }

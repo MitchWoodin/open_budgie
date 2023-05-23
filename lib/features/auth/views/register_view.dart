@@ -51,56 +51,62 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
           : Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 600),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Register",
-                          style: TextStyle(color: Palette.text, fontSize: 30),
-                        ),
-                        const SizedBox(height: 60),
-                        AuthField(
-                          controller: emailController,
-                          hintText: "Email",
-                        ),
-                        const SizedBox(height: 10),
-                        AuthField(
-                          controller: passwordController,
-                          hintText: "Password",
-                        ),
-                        const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: MainUtilityButton(
-                            label: "Register Account",
-                            onTap: onRegister,
+                child: Card(
+                  color: Palette.background,
+                  elevation: 20,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Register",
+                            style: TextStyle(color: Palette.text, fontSize: 30),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        RichText(
-                          text: TextSpan(
-                            text: "Already have an account? ",
-                            style: const TextStyle(color: Palette.text),
-                            children: [
-                              TextSpan(
-                                text: "Log In",
-                                style: const TextStyle(
-                                  color: Palette.primary,
+                          const SizedBox(height: 30),
+                          Image.asset(AssetConstants.SMALL_LOGO, height: 100,),
+                          const SizedBox(height: 30),
+                          AuthField(
+                            controller: emailController,
+                            hintText: "Email",
+                          ),
+                          const SizedBox(height: 10),
+                          AuthField(
+                            controller: passwordController,
+                            hintText: "Password",
+                          ),
+                          const SizedBox(height: 20),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: MainUtilityButton(
+                              label: "Register Account",
+                              onTap: onRegister,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          RichText(
+                            text: TextSpan(
+                              text: "Already have an account? ",
+                              style: const TextStyle(color: Palette.text),
+                              children: [
+                                TextSpan(
+                                  text: "Log In",
+                                  style: const TextStyle(
+                                    color: Palette.primary,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.push(
+                                        context,
+                                        LoginView.route(),
+                                      );
+                                    },
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.push(
-                                      context,
-                                      LoginView.route(),
-                                    );
-                                  },
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
