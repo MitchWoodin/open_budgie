@@ -1,4 +1,8 @@
 import 'package:budgie_finance/core/core.dart';
+import 'package:budgie_finance/core/pages/core_pages.dart';
+import 'package:budgie_finance/core/pages/loading_page.dart';
+import 'package:budgie_finance/features/auth/controller/auth_controller.dart';
+import 'package:budgie_finance/features/auth/views/login_view.dart';
 import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +26,19 @@ class MyApp extends ConsumerWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-      home: const RegisterView(),
+      home: ref.watch(currentUserAccountProvider).when(
+            data: (user) {
+              if (user != null) {
+                return const BudgetView();
+              } else {
+                return const LoginView();
+              }
+            },
+            error: (error, st) => ErrorPage(
+              error: error.toString(),
+            ),
+            loading: () => const LoadingPage(),
+          ),
     );
   }
 }

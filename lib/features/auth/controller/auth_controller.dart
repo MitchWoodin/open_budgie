@@ -1,3 +1,5 @@
+import 'package:appwrite/models.dart';
+import 'package:budgie_finance/features/auth/views/login_view.dart';
 import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,12 +14,19 @@ final authControllerProvider =
   );
 });
 
+final currentUserAccountProvider = FutureProvider((ref) async {
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.currentUser();
+});
+
 class AuthController extends StateNotifier<bool> {
   final AuthAPI _authAPI;
 
   AuthController({required AuthAPI authAPI})
       : _authAPI = authAPI,
         super(false);
+
+  Future<User?> currentUser() => _authAPI.currentUserAccount();
 
   void register({
     required String email,
@@ -32,7 +41,10 @@ class AuthController extends StateNotifier<bool> {
     state = false;
     response.fold(
       (l) => showSnackBar(context, l.message),
-      (r) => print(r.email),
+      (r) {
+        showSnackBar(context, "Account created successfully!");
+        Navigator.push(context, LoginView.route());
+      },
     );
   }
 
@@ -49,7 +61,9 @@ class AuthController extends StateNotifier<bool> {
     state = false;
     response.fold(
       (l) => showSnackBar(context, l.message),
-      (r) => print(r.userId),
+      (r) {
+        Navigator.push(context, BudgetView.route());
+      },
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/ui_constants.dart';
 import '../../../core/theme/core_theme.dart';
-import '../../../core/widgets/loading_page.dart';
+import '../../../core/pages/loading_page.dart';
 import '../../../core/widgets/main_util_button.dart';
 import '../widgets/auth_field.dart';
 import 'register_view.dart';
