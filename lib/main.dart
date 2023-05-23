@@ -1,3 +1,4 @@
+import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,14 +10,18 @@ void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final darkMode = ref.watch(darkModeProvider);
+
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: AppTheme.theme,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
       home: const RegisterView(),
     );
   }

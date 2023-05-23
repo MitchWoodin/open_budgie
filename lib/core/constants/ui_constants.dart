@@ -1,3 +1,4 @@
+import 'package:budgie_finance/core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/accounts/views/account_page.dart';
@@ -40,24 +41,21 @@ class UIConstants {
               scale: 0.5,
             ),
           ),
-          ListTile(
-            title: const Row(
-              children: [
-                Icon(Icons.monetization_on, color: Palette.background),
-                SizedBox(width: 15),
-                Text(
-                  "Budget",
-                  style: TextStyle(color: Palette.background),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(context, BudgetView.route());
-            },
-          ),
+          DrawerListTileButton(
+              title: "Budget",
+              icon: const Icon(
+                Icons.monetization_on,
+                color: Palette.background,
+              ),
+              onTap: () {
+                Navigator.push(context, BudgetView.route());
+              }),
           DrawerListTileButton(
             title: "Accounts",
-            icon: const Icon(Icons.account_balance, color: Palette.background),
+            icon: const Icon(
+              Icons.account_balance,
+              color: Palette.background,
+            ),
             onTap: () {
               Navigator.push(
                 context,
@@ -79,17 +77,18 @@ class UIConstants {
               )
             ],
           ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: IconButton(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.logout,
                   color: Palette.unselected,
                 ),
               ),
-            ),
+              // Switch(value: darkMode, onChanged: onChanged)
+            ],
           ),
         ],
       ),

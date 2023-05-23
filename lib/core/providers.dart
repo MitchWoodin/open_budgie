@@ -15,3 +15,15 @@ final appwriteAccountProvider = Provider((ref) {
   final client = ref.watch(appwriteClientProvider);
   return Account(client);
 });
+
+class DarkModeNotifier extends StateNotifier<bool> {
+  DarkModeNotifier() : super(true);
+
+  void toggle() {
+    state = !state;
+  }
+}
+
+final darkModeProvider = StateNotifierProvider<DarkModeNotifier, bool>((ref) {
+  return DarkModeNotifier();
+});

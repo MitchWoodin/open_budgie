@@ -46,6 +46,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   Widget build(BuildContext context) {
     final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
+      backgroundColor: Palette.primaryVariant,
       body: isLoading
           ? const Loader()
           : Center(

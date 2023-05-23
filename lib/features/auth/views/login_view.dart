@@ -1,3 +1,5 @@
+import 'package:budgie_finance/core/constants/asset_constants.dart';
+import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/features/auth/controller/auth_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,62 +46,70 @@ class _LoginViewState extends ConsumerState<LoginView> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(authControllerProvider);
+
     return Scaffold(
+      backgroundColor: Palette.primaryVariant,
       body: isLoading
           ? const Loader()
           : Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 600),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Log In",
-                          style: TextStyle(color: Palette.text, fontSize: 30),
-                        ),
-                        const SizedBox(height: 60),
-                        AuthField(
-                          controller: emailController,
-                          hintText: "Email",
-                        ),
-                        const SizedBox(height: 10),
-                        AuthField(
-                          controller: passwordController,
-                          hintText: "Password",
-                        ),
-                        const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: MainUtilityButton(
-                            label: "Login",
-                            onTap: onLogin,
+                child: Card(
+                  color: Palette.background,
+                  elevation: 20,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Log In",
+                            style: TextStyle(color: Palette.text, fontSize: 30),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        RichText(
-                          text: TextSpan(
-                            text: "Don't have an account? ",
-                            style: const TextStyle(color: Palette.text),
-                            children: [
-                              TextSpan(
-                                text: "Register.",
-                                style: const TextStyle(
-                                  color: Palette.primary,
+                          const SizedBox(height: 30),
+                          Image.asset(AssetConstants.SMALL_LOGO, height: 100,),
+                          const SizedBox(height: 30),
+                          AuthField(
+                            controller: emailController,
+                            hintText: "Email",
+                          ),
+                          const SizedBox(height: 10),
+                          AuthField(
+                            controller: passwordController,
+                            hintText: "Password",
+                          ),
+                          const SizedBox(height: 20),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: MainUtilityButton(
+                              label: "Login",
+                              onTap: onLogin,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          RichText(
+                            text: TextSpan(
+                              text: "Don't have an account? ",
+                              style: const TextStyle(color: Palette.text),
+                              children: [
+                                TextSpan(
+                                  text: "Register.",
+                                  style: const TextStyle(
+                                    color: Palette.primary,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.push(
+                                        context,
+                                        RegisterView.route(),
+                                      );
+                                    },
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.push(
-                                      context,
-                                      RegisterView.route(),
-                                    );
-                                  },
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
