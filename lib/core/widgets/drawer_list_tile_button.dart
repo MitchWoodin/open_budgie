@@ -4,16 +4,17 @@ import '../theme/core_theme.dart';
 
 class DrawerListTileButton extends StatelessWidget {
   final String title;
-  final Icon icon;
+  final Icon? icon;
   final Color textColor;
   final VoidCallback onTap;
+
 
   const DrawerListTileButton({
     Key? key,
     required this.title,
-    required this.icon,
     required this.onTap,
     this.textColor = Palette.background,
+    this.icon,
   }) : super(key: key);
 
   @override

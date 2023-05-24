@@ -1,13 +1,12 @@
 import 'package:budgie_finance/core/constants/ui_constants.dart';
 import 'package:budgie_finance/core/theme/core_theme.dart';
 import 'package:budgie_finance/features/accounts/widgets/text_field_dropdown.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 class AccountView extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const AccountView(),
-      );
+    builder: (context) => const AccountView(),
+  );
 
   const AccountView({Key? key}) : super(key: key);
 
@@ -31,6 +30,14 @@ class _AccountViewState extends State<AccountView> {
       drawer: UIConstants.drawer(context),
       body: Column(
         children: [
+          const SizedBox(
+            height: 20,
+          ),
+          const Text("Income", style: TextStyle(fontSize: 20)),
+          const SizedBox(
+            height: 20,
+          ),
+          const Divider(),
           SizedBox(
             width: double.infinity,
             child: DataTable(columns: const [
@@ -41,25 +48,24 @@ class _AccountViewState extends State<AccountView> {
               DataColumn(label: Text('Deposit')),
             ], rows: [
               DataRow(cells: [
-                const DataCell(Text('John Doe')),
-                DataCell(
-                  TextFieldDropdown(
-                    items: countries,
-                  )
-                ),
-                DataCell(
-                  TextFieldDropdown(
-                    items: countries,
-                  )
-                ),
+                const DataCell(TextField(
+                  decoration:
+                  InputDecoration.collapsed(hintText: "dd/mm/yyyy"),
+                )),
+                DataCell(TextFieldDropdown(
+                  items: countries,
+                )),
+                DataCell(TextFieldDropdown(
+                  items: countries,
+                )),
                 const DataCell(TextField(
                     decoration: InputDecoration.collapsed(
-                  hintText: '0.00',
-                ))),
+                      hintText: '0.00',
+                    ))),
                 const DataCell(TextField(
                     decoration: InputDecoration.collapsed(
-                  hintText: '0.00',
-                )))
+                      hintText: '0.00',
+                    )))
               ])
             ]),
           ),

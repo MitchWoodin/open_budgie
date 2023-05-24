@@ -1,7 +1,6 @@
-import 'package:budgie_finance/core/core.dart';
+import 'package:budgie_finance/features/accounts/views/responsive_account.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/accounts/views/account_page.dart';
 import '../../features/budget/views/budget_view.dart';
 import '../theme/core_theme.dart';
 import '../widgets/drawer_list_tile_button.dart';
@@ -48,20 +47,25 @@ class UIConstants {
                 color: Palette.background,
               ),
               onTap: () {
-                Navigator.push(context, BudgetView.route());
+                Navigator.push(
+                  context,
+                  BudgetView.route(),
+                );
               }),
-          DrawerListTileButton(
-            title: "Accounts",
-            icon: const Icon(
-              Icons.account_balance,
-              color: Palette.background,
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                AccountView.route(),
-              );
-            },
+          ExpansionTile(
+            title: const Text("Accounts"),
+            leading: const Icon(Icons.account_balance),
+            children: [
+              DrawerListTileButton(
+                title: "Income",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    ResponsiveAccountLayout.route(),
+                  );
+                },
+              )
+            ],
           ),
           ExpansionTile(
             title: const Text(
