@@ -21,4 +21,3 @@ class _MobileAccountViewState extends State<MobileAccountView> {
     );
   }
 }
-

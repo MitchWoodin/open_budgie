@@ -1,4 +1,4 @@
-import 'package:budgie_finance/features/accounts/views/responsive_account.dart';
+import 'package:budgie_finance/features/accounts/views/responsive_account_layout.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/budget/views/budget_view.dart';
