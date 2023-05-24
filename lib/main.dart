@@ -1,14 +1,12 @@
-import 'package:budgie_finance/core/core.dart';
-import 'package:budgie_finance/core/pages/core_pages.dart';
-import 'package:budgie_finance/core/pages/loading_page.dart';
-import 'package:budgie_finance/features/auth/controller/auth_controller.dart';
-import 'package:budgie_finance/features/auth/views/login_view.dart';
-import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/pages/core_pages.dart';
+import 'core/providers.dart';
 import 'core/theme/core_theme.dart';
-import 'features/auth/views/register_view.dart';
+import 'features/auth/controller/auth_controller.dart';
+import 'features/auth/views/login_view.dart';
+import 'features/budget/views/budget_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -23,7 +21,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
       home: ref.watch(currentUserAccountProvider).when(

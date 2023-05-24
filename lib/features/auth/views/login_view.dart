@@ -54,12 +54,16 @@ class _LoginViewState extends ConsumerState<LoginView> {
           : Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 600),
+                padding: const EdgeInsets.all(20),
                 child: Card(
                   color: Palette.background,
                   elevation: 20,
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 20,
+                      ),
                       child: Column(
                         children: [
                           const Text(
@@ -67,7 +71,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                             style: TextStyle(color: Palette.text, fontSize: 30),
                           ),
                           const SizedBox(height: 30),
-                          Image.asset(AssetConstants.SMALL_LOGO, height: 100,),
+                          Image.asset(
+                            AssetConstants.SMALL_LOGO,
+                            height: 100,
+                          ),
                           const SizedBox(height: 30),
                           AuthField(
                             controller: emailController,
