@@ -1,5 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppwriteConstants {
-  static const String endPoint = 'https://cloud.appwrite.io/v1';
-  static const String projectId = '646c117f96aa8653a1b9';
-  static const String databaseId = '646c11a5759dd0132e91';
+  static String endPoint = dotenv.env['APPWRITE_ENDPOINT'] ?? "endPoint not found";
+  static String projectId = dotenv.env['PROJECT_ID'] ?? "projectId not found";
+  static String databaseId = dotenv.env['DB_ID'] ?? "databaseId not found";
 }

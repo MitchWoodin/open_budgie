@@ -16,9 +16,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   appwrite: ^9.0.0
   fpdart: ^0.6.0
-  pluto_grid: ^7.0.2
-  dropdownfield2: ^1.0.7
   dropdown_search: ^5.0.6
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +30,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - .env

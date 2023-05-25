@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/pages/core_pages.dart';
 import 'core/providers.dart';
@@ -8,7 +9,8 @@ import 'features/auth/controller/auth_controller.dart';
 import 'features/auth/views/login_view.dart';
 import 'features/budget/views/budget_view.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
   runApp(const ProviderScope(child: MyApp()));
 }
 

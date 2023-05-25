@@ -121,14 +121,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.6"
-  dropdownfield2:
-    dependency: "direct main"
-    description:
-      name: dropdownfield2
-      sha256: "83d7c25c253f64d86d3541543b5a118b150acd2810e0f57330c970e81032db35"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -158,6 +150,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: d9283d92059a22e9834bc0a31336658ffba77089fb6f3cc36751f1fc7c6661a3
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -232,14 +232,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -368,14 +360,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  pluto_grid:
-    dependency: "direct main"
-    description:
-      name: pluto_grid
-      sha256: e77c34a33dd9d74abbe20ba1df96474dded150dd042c7f7495be1bc2c26bd37f
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.2"
   process:
     dependency: transitive
     description:
@@ -392,14 +376,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.27.7"
   sky_engine:
     dependency: transitive
     description: flutter
