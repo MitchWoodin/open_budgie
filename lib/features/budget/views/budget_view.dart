@@ -1,5 +1,4 @@
 import 'package:budgie_finance/core/constants/ui_constants.dart';
-import 'package:budgie_finance/core/theme/core_theme.dart';
 import 'package:flutter/material.dart';
 
 class BudgetView extends StatefulWidget {
@@ -18,17 +17,22 @@ class _BudgetViewState extends State<BudgetView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UIConstants.appBar(),
-      drawer: UIConstants.drawer(context),
-      body: const Row(
+      // drawer: UIConstants.drawer(context),
+      body: Row(
         children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(children: [
-              Text("Budget"),
-              SizedBox(width: 10),
-              Text("Page"),
-            ]),
-          )
+          UIConstants.drawer(context),
+          const Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(children: [
+                  Text("Budget"),
+                  SizedBox(width: 10),
+                  Text("Page"),
+                ]),
+              )
+            ],
+          ),
         ],
       ),
     );

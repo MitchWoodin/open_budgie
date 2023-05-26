@@ -20,8 +20,8 @@ class UIConstants {
           ),
         ),
       ),
-      backgroundColor: Palette.primary,
-      elevation: 10,
+      backgroundColor: Palette.primaryVariant,
+      elevation: 0,
     );
   }
 
@@ -31,6 +31,7 @@ class UIConstants {
   static Drawer drawer(BuildContext context) {
     return Drawer(
       backgroundColor: Palette.primaryVariant,
+      elevation: 0,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
