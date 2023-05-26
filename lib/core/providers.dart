@@ -24,6 +24,11 @@ class DarkModeNotifier extends StateNotifier<bool> {
   }
 }
 
+final appwriteDatabaseProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Databases(client);
+});
+
 final darkModeProvider = StateNotifierProvider<DarkModeNotifier, bool>((ref) {
   return DarkModeNotifier();
 });
