@@ -1,19 +1,18 @@
-import 'dart:ffi';
 import 'package:flutter/foundation.dart';
 
 @immutable
 class TransactionModel {
-  final String userId;
+  final String email;
   final String date;
   final String account;
   final String paidTo;
   final String category;
-  final Double payment;
-  final Double deposit;
+  final double payment;
+  final double deposit;
 
 //<editor-fold desc="Data Methods">
   const TransactionModel({
-    required this.userId,
+    required this.email,
     required this.date,
     required this.account,
     required this.paidTo,
@@ -27,7 +26,7 @@ class TransactionModel {
       identical(this, other) ||
       (other is TransactionModel &&
           runtimeType == other.runtimeType &&
-          userId == other.userId &&
+          email == other.email &&
           date == other.date &&
           account == other.account &&
           paidTo == other.paidTo &&
@@ -37,7 +36,7 @@ class TransactionModel {
 
   @override
   int get hashCode =>
-      userId.hashCode ^
+      email.hashCode ^
       date.hashCode ^
       account.hashCode ^
       paidTo.hashCode ^
@@ -48,7 +47,7 @@ class TransactionModel {
   @override
   String toString() {
     return '''
-      TransactionModel{ userId: $userId, date: $date, account: $account, 
+      TransactionModel{ userId: $email, date: $date, account: $account, 
       paidTo: $paidTo, payment: $payment, deposit: $deposit,}''';
   }
 
@@ -58,11 +57,11 @@ class TransactionModel {
     String? account,
     String? paidTo,
     String? category,
-    Double? payment,
-    Double? deposit,
+    double? payment,
+    double? deposit,
   }) {
     return TransactionModel(
-      userId: userId ?? this.userId,
+      email: userId ?? this.email,
       date: date ?? this.date,
       account: account ?? this.account,
       paidTo: paidTo ?? this.paidTo,
@@ -74,24 +73,25 @@ class TransactionModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'date': date,
-      'account': account,
-      'paidTo': paidTo,
-      'category': category,
-      'payment': payment,
-      'deposit': deposit,
+      'Email': email,
+      'Date': date,
+      'Account': account,
+      'PaidTo': paidTo,
+      'Category': category,
+      'Payment': payment,
+      'Deposit': deposit,
     };
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
-      userId: map['\$id'] as String,
-      date: map['date'] as String,
-      account: map['account'] as String,
-      paidTo: map['paidTo'] as String,
-      category: map['category'] as String,
-      payment: map['payment'] as Double,
-      deposit: map['deposit'] as Double,
+      email: map['Email'] as String,
+      date: map['Date'] as String,
+      account: map['Account'] as String,
+      paidTo: map['PaidTo'] as String,
+      category: map['Category'] as String,
+      payment: map['Payment'] as double,
+      deposit: map['Deposit'] as double,
     );
   }
 
