@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:budgie_finance/core/constants/ui_constants.dart';
+import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/core/theme/core_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:budgie_finance/features/accounts/controller/transaction_controller.dart';
@@ -18,7 +19,6 @@ class AccountView extends ConsumerStatefulWidget {
 
 class _AccountViewState extends ConsumerState<AccountView> {
   final dateController = TextEditingController();
-  final accountController = TextEditingController();
   final paidToController = TextEditingController();
   final categoryController = TextEditingController();
   final paymentController = TextEditingController();
@@ -26,13 +26,17 @@ class _AccountViewState extends ConsumerState<AccountView> {
 
   void addTransaction() {
     ref.read(transactionControllerProvider.notifier).addTransaction(
-          userId: ID.unique(),
+          email: "mitchell@email.com",
           date: dateController.text,
           account: "Income",
           paidTo: paidToController.text,
           category: categoryController.text,
-          payment: double.parse(paymentController.text),
-          deposit: double.parse(depositController.text),
+          payment: paymentController.text.isEmpty
+              ? 0.0
+              : double.parse(paymentController.text),
+          deposit: depositController.text.isEmpty
+              ? 0.0
+              : double.parse(depositController.text),
           context: context,
         );
   }
@@ -74,9 +78,9 @@ class _AccountViewState extends ConsumerState<AccountView> {
                         const InputDecoration.collapsed(hintText: "Paid To"),
                   )),
                   DataCell(TextField(
-                    controller: accountController,
+                    controller: categoryController,
                     decoration:
-                        const InputDecoration.collapsed(hintText: "Account"),
+                        const InputDecoration.collapsed(hintText: "Category"),
                   )),
                   DataCell(TextField(
                       controller: paymentController,
