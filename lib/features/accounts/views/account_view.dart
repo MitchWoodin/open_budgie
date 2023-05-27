@@ -45,7 +45,6 @@ class _AccountViewState extends ConsumerState<AccountView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UIConstants.appBar(),
-      // drawer: UIConstants.drawer(context),
       body: Row(
         children: [
           UIConstants.drawer(context),
