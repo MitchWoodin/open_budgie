@@ -1,6 +1,4 @@
-import 'package:appwrite/appwrite.dart';
 import 'package:budgie_finance/core/constants/ui_constants.dart';
-import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/core/theme/core_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:budgie_finance/features/accounts/controller/transaction_controller.dart';
@@ -26,7 +24,7 @@ class _AccountViewState extends ConsumerState<AccountView> {
 
   void addTransaction() {
     ref.read(transactionControllerProvider.notifier).addTransaction(
-          email: "mitchell@email.com",
+          email: "test@email.com",
           date: dateController.text,
           account: "Income",
           paidTo: paidToController.text,
@@ -44,7 +42,7 @@ class _AccountViewState extends ConsumerState<AccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UIConstants.appBar(),
+      appBar: UIConstants.appBar(false),
       body: Row(
         children: [
           UIConstants.drawer(context),

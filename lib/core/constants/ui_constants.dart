@@ -1,14 +1,15 @@
 import 'package:budgie_finance/features/accounts/views/responsive_account_layout.dart';
+import 'package:budgie_finance/features/budget/views/responsive_budget_layout.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/budget/views/budget_view.dart';
 import '../theme/core_theme.dart';
 import '../widgets/drawer_list_tile_button.dart';
 import 'core_constants.dart';
 
 class UIConstants {
-  static AppBar appBar() {
+  static AppBar appBar(darkMode) {
     return AppBar(
+      automaticallyImplyLeading: darkMode,
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Align(
@@ -24,9 +25,6 @@ class UIConstants {
       elevation: 0,
     );
   }
-
-  // final BuildContext context;
-  // UIConstants({required this.context});
 
   static Drawer drawer(BuildContext context) {
     return Drawer(
@@ -50,7 +48,7 @@ class UIConstants {
               onTap: () {
                 Navigator.push(
                   context,
-                  BudgetView.route(),
+                  ResponsiveBudgetLayout.route(),
                 );
               }),
           ExpansionTile(

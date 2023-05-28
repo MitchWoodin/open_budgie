@@ -16,7 +16,7 @@ class _BudgetViewState extends State<BudgetView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UIConstants.appBar(),
+      appBar: UIConstants.appBar(false),
       // drawer: UIConstants.drawer(context),
       body: Row(
         children: [
