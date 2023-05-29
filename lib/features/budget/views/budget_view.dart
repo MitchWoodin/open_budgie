@@ -18,10 +18,10 @@ class _BudgetViewState extends State<BudgetView> {
     return Scaffold(
       appBar: UIConstants.appBar(false),
       // drawer: UIConstants.drawer(context),
-      body: Row(
+      body: const Row(
         children: [
-          UIConstants.drawer(context),
-          const Row(
+          MainDrawer(),
+          Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(8.0),

@@ -1,3 +1,4 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:budgie_finance/features/auth/views/login_view.dart';
 import 'package:budgie_finance/features/budget/views/budget_view.dart';
@@ -65,5 +66,18 @@ class AuthController extends StateNotifier<bool> {
         Navigator.push(context, BudgetView.route());
       },
     );
+  }
+
+  void logout({
+    required BuildContext context,
+  }) async {
+    final response = await _authAPI.logout();
+    response.fold((l) => null, (r) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        LoginView.route(),
+        (route) => false,
+      );
+    });
   }
 }

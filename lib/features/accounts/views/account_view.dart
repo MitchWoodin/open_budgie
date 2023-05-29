@@ -45,67 +45,73 @@ class _AccountViewState extends ConsumerState<AccountView> {
       appBar: UIConstants.appBar(false),
       body: Row(
         children: [
-          UIConstants.drawer(context),
-          Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text("Income", style: TextStyle(fontSize: 20)),
-              const SizedBox(
-                height: 20,
-              ),
-              const Divider(),
-              DataTable(columns: const [
-                DataColumn(label: Text('Date')),
-                DataColumn(label: Text('Paid To')),
-                DataColumn(label: Text('Category')),
-                DataColumn(label: Text('Payment')),
-                DataColumn(label: Text('Deposit')),
-              ], rows: [
-                DataRow(cells: [
-                  DataCell(TextField(
-                    controller: dateController,
-                    decoration:
-                        const InputDecoration.collapsed(hintText: "dd/mm/yyyy"),
-                  )),
-                  DataCell(TextField(
-                    controller: paidToController,
-                    decoration:
-                        const InputDecoration.collapsed(hintText: "Paid To"),
-                  )),
-                  DataCell(TextField(
-                    controller: categoryController,
-                    decoration:
-                        const InputDecoration.collapsed(hintText: "Category"),
-                  )),
-                  DataCell(TextField(
-                      controller: paymentController,
-                      decoration: const InputDecoration.collapsed(
-                        hintText: '0.00',
-                      ))),
-                  DataCell(TextField(
-                      controller: depositController,
-                      decoration: const InputDecoration.collapsed(
-                        hintText: '0.00',
-                      )))
-                ])
-              ]),
-              IconButton(
-                onPressed: addTransaction,
-                icon: const Icon(
-                  Icons.add_circle_rounded,
-                  color: Palette.secondary,
+          const MainDrawer(),
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Divider(
-                  thickness: 5,
-                  color: Palette.unselected,
+                const Center(
+                    child:
+                        Text("Income", style: TextStyle(fontSize: 20))),
+                const SizedBox(
+                  height: 20,
                 ),
-              )
-            ],
+                const Divider(),
+                DataTable(columns: const [
+                  DataColumn(label: Text('Date')),
+                  DataColumn(label: Text('Paid To')),
+                  DataColumn(label: Text('Category')),
+                  DataColumn(label: Text('Payment')),
+                  DataColumn(label: Text('Deposit')),
+                ], rows: [
+                  DataRow(cells: [
+                    DataCell(TextField(
+                      controller: dateController,
+                      decoration: const InputDecoration.collapsed(
+                          hintText: "dd/mm/yyyy"),
+                    )),
+                    DataCell(TextField(
+                      controller: paidToController,
+                      decoration:
+                          const InputDecoration.collapsed(hintText: "Paid To"),
+                    )),
+                    DataCell(TextField(
+                      controller: categoryController,
+                      decoration:
+                          const InputDecoration.collapsed(hintText: "Category"),
+                    )),
+                    DataCell(TextField(
+                        controller: paymentController,
+                        decoration: const InputDecoration.collapsed(
+                          hintText: '0.00',
+                        ))),
+                    DataCell(TextField(
+                        controller: depositController,
+                        decoration: const InputDecoration.collapsed(
+                          hintText: '0.00',
+                        )))
+                  ])
+                ]),
+                IconButton(
+                  onPressed: addTransaction,
+                  icon: const Icon(
+                    Icons.add_circle_rounded,
+                    color: Palette.secondary,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Divider(
+                    thickness: 5,
+                    color: Palette.unselected,
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),

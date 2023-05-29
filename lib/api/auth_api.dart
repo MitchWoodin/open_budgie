@@ -21,6 +21,8 @@ abstract class IAuthAPI {
     required String password,
   });
 
+  FEitherVoid logout();
+
   Future<User?> currentUserAccount();
 }
 
@@ -74,6 +76,24 @@ class AuthAPI implements IAuthAPI {
         password: password,
       );
       return right(session);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+        Failure(e.message ?? "An unknown error occurred", stackTrace),
+      );
+    } catch (e, stackTrace) {
+      return left(
+        Failure(e.toString(), stackTrace),
+      );
+    }
+  }
+
+  @override
+  FEitherVoid logout() async {
+    try {
+      await _account.deleteSession(
+        sessionId: "current",
+      );
+      return right(null);
     } on AppwriteException catch (e, stackTrace) {
       return left(
         Failure(e.message ?? "An unknown error occurred", stackTrace),

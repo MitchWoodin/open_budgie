@@ -1,15 +1,19 @@
+import 'dart:math';
+
 import 'package:budgie_finance/features/accounts/views/responsive_account_layout.dart';
 import 'package:budgie_finance/features/budget/views/responsive_budget_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../features/auth/controller/auth_controller.dart';
 import '../theme/core_theme.dart';
 import '../widgets/drawer_list_tile_button.dart';
 import 'core_constants.dart';
 
 class UIConstants {
-  static AppBar appBar(darkMode) {
+  static AppBar appBar(mobileLeading) {
     return AppBar(
-      automaticallyImplyLeading: darkMode,
+      automaticallyImplyLeading: mobileLeading,
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Align(
@@ -25,8 +29,18 @@ class UIConstants {
       elevation: 0,
     );
   }
+}
 
-  static Drawer drawer(BuildContext context) {
+class MainDrawer extends ConsumerStatefulWidget {
+  const MainDrawer({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<MainDrawer> createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends ConsumerState<MainDrawer> {
+  @override
+  Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Palette.primaryVariant,
       elevation: 0,
@@ -51,6 +65,14 @@ class UIConstants {
                   ResponsiveBudgetLayout.route(),
                 );
               }),
+          DrawerListTileButton(
+            title: "Charts",
+            icon: const Icon(
+              Icons.pie_chart,
+              color: Palette.background,
+            ),
+            onTap: () {},
+          ),
           ExpansionTile(
             title: const Text("Accounts"),
             leading: const Icon(Icons.account_balance),
@@ -80,11 +102,23 @@ class UIConstants {
               )
             ],
           ),
+          const Spacer(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // crossAxisAlignment: CrossAxisAlignment.baseline,
+            children: <Widget>[
               IconButton(
-                onPressed: () {},
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.dark_mode_outlined,
+                    color: Palette.unselected,
+                  )),
+              IconButton(
+                onPressed: () {
+                  ref
+                      .read(authControllerProvider.notifier)
+                      .logout(context: context);
+                },
                 icon: const Icon(
                   Icons.logout,
                   color: Palette.unselected,

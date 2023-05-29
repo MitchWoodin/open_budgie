@@ -14,7 +14,7 @@ class _MobileBudgetViewState extends State<MobileBudgetView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UIConstants.appBar(true),
-      drawer: UIConstants.drawer(context),
+      drawer: const MainDrawer(),
       body: const Center(
         child: Text("Budget Page"),
       ),
