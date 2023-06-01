@@ -21,6 +21,12 @@ final currentUserAccountProvider = FutureProvider((ref) async {
   return authController.currentUser();
 });
 
+final getAccountTransactionsProvider = FutureProvider((ref) async {
+  final transactionController =
+      ref.watch(transactionControllerProvider.notifier);
+  return transactionController.getAccountTransactions();
+});
+
 class TransactionController extends StateNotifier<bool> {
   final TransactionAPI _transactionAPI;
   final AuthAPI _authAPI;
@@ -59,5 +65,12 @@ class TransactionController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) => showSnackBar(context, "Transaction added successfully"),
     );
+  }
+
+  Future<List<TransactionModel>> getAccountTransactions() async {
+    final transactionList = await _transactionAPI.getAccountTransactions();
+    return transactionList
+        .map((transaction) => TransactionModel.fromMap(transaction.data))
+        .toList();
   }
 }

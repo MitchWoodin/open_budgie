@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:budgie_finance/features/accounts/views/responsive_account_layout.dart';
+import 'package:budgie_finance/features/accounts/widgets/transaction_list.dart';
 import 'package:budgie_finance/features/budget/views/responsive_budget_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,7 +72,12 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
               Icons.pie_chart,
               color: Palette.background,
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                const TransactionList() as Route<Object?>,
+              );
+            },
           ),
           ExpansionTile(
             title: const Text("Accounts"),

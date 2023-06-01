@@ -12,6 +12,7 @@ final transactionAPIProvider = Provider((ref) {
 
 abstract class ITransactionAPI {
   FEither<Document> addTransaction(TransactionModel transaction);
+  Future<List<Document>> getAccountTransactions();
 }
 
 class TransactionAPI implements ITransactionAPI {
@@ -34,5 +35,18 @@ class TransactionAPI implements ITransactionAPI {
     } catch (e, stackTrace) {
       return left(Failure(e.toString(), stackTrace));
     }
+  }
+
+  @override
+  Future<List<Document>> getAccountTransactions() async {
+    final documents = await _db.listDocuments(
+      databaseId: AppwriteConstants.databaseId,
+      collectionId: AppwriteConstants.transactionCollectionId,
+      // queries: [
+      //   Query.equal('Email', email),
+      //   Query.orderDesc('Date'),
+      // ],
+    );
+    return documents.documents;
   }
 }
