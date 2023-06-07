@@ -1,5 +1,4 @@
 import 'package:budgie_finance/core/pages/loading_page.dart';
-import 'package:budgie_finance/features/budget/views/budget_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -79,6 +78,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                           AuthField(
                             controller: passwordController,
                             hintText: "Password",
+                            hidden: true,
                           ),
                           const SizedBox(height: 20),
                           Align(

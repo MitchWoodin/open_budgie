@@ -1,11 +1,9 @@
 import 'package:budgie_finance/core/constants/asset_constants.dart';
-import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/features/auth/controller/auth_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/constants/ui_constants.dart';
 import '../../../core/theme/core_theme.dart';
 import '../../../core/pages/loading_page.dart';
 import '../../../core/widgets/main_util_button.dart';
@@ -83,6 +81,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           AuthField(
                             controller: passwordController,
                             hintText: "Password",
+                            hidden: true,
                           ),
                           const SizedBox(height: 20),
                           Align(
