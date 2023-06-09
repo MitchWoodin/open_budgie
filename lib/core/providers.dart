@@ -33,3 +33,8 @@ final appwriteDatabaseProvider = Provider((ref) {
 final darkModeProvider = StateNotifierProvider<DarkModeNotifier, bool>((ref) {
   return DarkModeNotifier();
 });
+
+final appwriteRealtimeProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Realtime(client);
+});

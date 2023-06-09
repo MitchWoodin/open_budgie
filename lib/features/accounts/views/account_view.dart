@@ -1,8 +1,14 @@
 import 'package:budgie_finance/core/constants/ui_constants.dart';
+import 'package:budgie_finance/core/core.dart';
+import 'package:budgie_finance/core/pages/core_pages.dart';
 import 'package:budgie_finance/core/theme/core_theme.dart';
+import 'package:budgie_finance/features/accounts/widgets/text_field_dropdown.dart';
+import 'package:budgie_finance/features/accounts/widgets/transaction_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:budgie_finance/features/accounts/controller/transaction_controller.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/transaction_models.dart';
 
 class AccountView extends ConsumerStatefulWidget {
   static route() => MaterialPageRoute(
@@ -37,10 +43,12 @@ class _AccountViewState extends ConsumerState<AccountView> {
               : double.parse(depositController.text),
           context: context,
         );
+    ref.refresh(getAccountTransactionsProvider);
   }
 
   @override
   Widget build(BuildContext context) {
+    final currentUser = ref.watch(currentUserAccountProvider).value;
     return Scaffold(
       appBar: UIConstants.appBar(false),
       body: Row(
@@ -55,8 +63,7 @@ class _AccountViewState extends ConsumerState<AccountView> {
                   height: 20,
                 ),
                 const Center(
-                    child:
-                        Text("Income", style: TextStyle(fontSize: 20))),
+                    child: Text("Income", style: TextStyle(fontSize: 20))),
                 const SizedBox(
                   height: 20,
                 ),
@@ -76,8 +83,9 @@ class _AccountViewState extends ConsumerState<AccountView> {
                     )),
                     DataCell(TextField(
                       controller: paidToController,
-                      decoration:
-                          const InputDecoration.collapsed(hintText: "Paid To"),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Paid To",
+                      ),
                     )),
                     DataCell(TextField(
                       controller: categoryController,
@@ -109,7 +117,11 @@ class _AccountViewState extends ConsumerState<AccountView> {
                     thickness: 5,
                     color: Palette.unselected,
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const TransactionList(),
               ],
             ),
           ),

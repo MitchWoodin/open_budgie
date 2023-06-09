@@ -1,6 +1,5 @@
 import 'package:appwrite/models.dart';
 import 'package:budgie_finance/core/core.dart';
-import 'package:budgie_finance/features/auth/controller/auth_controller.dart';
 import 'package:budgie_finance/models/transaction_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,16 +8,27 @@ import '../../../api/auth_api.dart';
 import '../../../api/transaction_api.dart';
 
 final transactionControllerProvider =
-    StateNotifierProvider<TransactionController, bool>((ref) {
+    StateNotifierProvider.autoDispose<TransactionController, bool>((ref) {
   return TransactionController(
     transactionAPI: ref.watch(transactionAPIProvider),
     authAPI: ref.watch(authAPIProvider),
   );
 });
 
-final currentUserAccountProvider = FutureProvider((ref) async {
+final currentUserAccountProvider = FutureProvider.autoDispose((ref) async {
   final authController = ref.watch(transactionControllerProvider.notifier);
   return authController.currentUser();
+});
+
+final getAccountTransactionsProvider = FutureProvider.autoDispose((ref) async {
+  final transactionController =
+      ref.watch(transactionControllerProvider.notifier);
+  return transactionController.getAccountTransactions();
+});
+
+final getLatestTransactionProvider = StreamProvider.autoDispose((ref) {
+  final transactionAPI = ref.watch(transactionAPIProvider);
+  return transactionAPI.getLatestTransaction();
 });
 
 class TransactionController extends StateNotifier<bool> {
@@ -59,5 +69,12 @@ class TransactionController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) => showSnackBar(context, "Transaction added successfully"),
     );
+  }
+
+  Future<List<TransactionModel>> getAccountTransactions() async {
+    final transactionList = await _transactionAPI.getAccountTransactions();
+    return transactionList
+        .map((transaction) => TransactionModel.fromMap(transaction.data))
+        .toList();
   }
 }

@@ -47,12 +47,12 @@ class TransactionModel {
   @override
   String toString() {
     return '''
-      TransactionModel{ userId: $email, date: $date, account: $account, 
+      TransactionModel{ email: $email, date: $date, account: $account, 
       paidTo: $paidTo, payment: $payment, deposit: $deposit,}''';
   }
 
   TransactionModel copyWith({
-    String? userId,
+    String? email,
     String? date,
     String? account,
     String? paidTo,
@@ -61,7 +61,7 @@ class TransactionModel {
     double? deposit,
   }) {
     return TransactionModel(
-      email: userId ?? this.email,
+      email: email ?? this.email,
       date: date ?? this.date,
       account: account ?? this.account,
       paidTo: paidTo ?? this.paidTo,
@@ -72,26 +72,28 @@ class TransactionModel {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'Email': email,
-      'Date': date,
-      'Account': account,
-      'PaidTo': paidTo,
-      'Category': category,
-      'Payment': payment,
-      'Deposit': deposit,
-    };
+    final result = <String, dynamic>{};
+
+    result.addAll({'email': email});
+    result.addAll({'date': date});
+    result.addAll({'account': account});
+    result.addAll({'paidTo': paidTo});
+    result.addAll({'category': category});
+    result.addAll({'payment': payment});
+    result.addAll({'deposit': deposit});
+
+    return result;
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
-      email: map['Email'] as String,
-      date: map['Date'] as String,
-      account: map['Account'] as String,
-      paidTo: map['PaidTo'] as String,
-      category: map['Category'] as String,
-      payment: map['Payment'] as double,
-      deposit: map['Deposit'] as double,
+      email: map['email'] ?? "",
+      date: map['date'] ?? "",
+      account: map['account'] ?? "",
+      paidTo: map['paidTo'] ?? "",
+      category: map['category'] ?? "",
+      payment: map['payment']?.toDouble() ?? 0.0,
+      deposit: map['deposit']?.toDouble() ?? 0.0,
     );
   }
 

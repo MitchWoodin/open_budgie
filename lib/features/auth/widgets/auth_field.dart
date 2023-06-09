@@ -5,11 +5,13 @@ import '../../../core/theme/palette.dart';
 class AuthField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final bool hidden;
 
   const AuthField({
     Key? key,
     required this.controller,
     required this.hintText,
+    this.hidden = false,
   }) : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class AuthField extends StatelessWidget {
     return TextFormField(
       style: const TextStyle(color: Palette.text),
       controller: controller,
+      obscureText: hidden,
       decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
@@ -36,8 +39,7 @@ class AuthField extends StatelessWidget {
           hintStyle: const TextStyle(
             color: Palette.text,
             fontSize: 18,
-          )
-      ),
+          )),
     );
   }
 }
