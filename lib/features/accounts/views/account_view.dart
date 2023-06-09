@@ -1,6 +1,8 @@
 import 'package:budgie_finance/core/constants/ui_constants.dart';
+import 'package:budgie_finance/core/core.dart';
 import 'package:budgie_finance/core/pages/core_pages.dart';
 import 'package:budgie_finance/core/theme/core_theme.dart';
+import 'package:budgie_finance/features/accounts/widgets/text_field_dropdown.dart';
 import 'package:budgie_finance/features/accounts/widgets/transaction_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:budgie_finance/features/accounts/controller/transaction_controller.dart';
@@ -41,11 +43,8 @@ class _AccountViewState extends ConsumerState<AccountView> {
               : double.parse(depositController.text),
           context: context,
         );
+    ref.refresh(getAccountTransactionsProvider);
   }
-
-  // void getAccountTransactions() {
-  //   ref.read(transactionControllerProvider.notifier).getAccountTransactions();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +83,9 @@ class _AccountViewState extends ConsumerState<AccountView> {
                     )),
                     DataCell(TextField(
                       controller: paidToController,
-                      decoration:
-                          const InputDecoration.collapsed(hintText: "Paid To"),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Paid To",
+                      ),
                     )),
                     DataCell(TextField(
                       controller: categoryController,

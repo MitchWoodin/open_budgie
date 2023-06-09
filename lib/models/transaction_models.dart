@@ -87,13 +87,13 @@ class TransactionModel {
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
-      email: map['Email'] ?? "",
-      date: map['Date'] ?? "",
-      account: map['Account'] ?? "",
-      paidTo: map['PaidTo'] ?? "",
-      category: map['Category'] ?? "",
-      payment: map['Payment']?.toDouble() ?? 0.0,
-      deposit: map['Deposit']?.toDouble() ?? 0.0,
+      email: map['email'] ?? "",
+      date: map['date'] ?? "",
+      account: map['account'] ?? "",
+      paidTo: map['paidTo'] ?? "",
+      category: map['category'] ?? "",
+      payment: map['payment']?.toDouble() ?? 0.0,
+      deposit: map['deposit']?.toDouble() ?? 0.0,
     );
   }
 
