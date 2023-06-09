@@ -87,11 +87,7 @@ class _AccountViewState extends ConsumerState<AccountView> {
                         hintText: "Paid To",
                       ),
                     )),
-                    DataCell(TextField(
-                      controller: categoryController,
-                      decoration:
-                          const InputDecoration.collapsed(hintText: "Category"),
-                    )),
+                    const DataCell(TextFieldDropdown()),
                     DataCell(TextField(
                         controller: paymentController,
                         decoration: const InputDecoration.collapsed(
